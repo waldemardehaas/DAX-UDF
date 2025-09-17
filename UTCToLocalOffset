@@ -1,0 +1,7 @@
+DEFINE FUNCTION TimeZoneConversion = (SelectedDate : datetime) =>
+
+VAR _SelectedDay = SelectedDate
+VAR _OffsetLookUp = LOOKUPVALUE(v1_DimCalendar[TimezoneOffset],v1_DimCalendar[Date], _SelectedDay)
+VAR _DateTimeWOffset = UTCNOW() + TIME(_OffsetLookUp, 0, 0)
+
+RETURN _DateTimeWOffset
