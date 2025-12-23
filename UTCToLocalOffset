@@ -2,7 +2,7 @@ DEFINE
 
 FUNCTION DateTimeUTCToLocal = (DateTime: datetime) =>   
 
-VAR _GetOffsetDateToday = CALCULATE(SELECTEDVALUE(DimCalendar[TimezoneOffset]), DimCalendar[Date] = TODAY())
+VAR _GetOffsetDateToday = CALCULATE(SELECTEDVALUE(v1_DimCalendar[TimezoneOffset]), v1_DimCalendar[Date] = TODAY())
 VAR _ConversionWithOffset = DateTime + TIME(_GetOffsetDateToday,0,0)
 
 RETURN _ConversionWithOffset
@@ -11,8 +11,7 @@ RETURN _ConversionWithOffset
 
 FUNCTION DateTimeUTCToLocalTimeOnly = (DateTime: datetime) =>   
 
-VAR _GetOffsetDateToday = CALCULATE(SELECTEDVALUE(DimCalendar[TimezoneOffset]), DimCalendar[Date] = TODAY())
+VAR _GetOffsetDateToday = CALCULATE(SELECTEDVALUE(v1_DimCalendar[TimezoneOffset]), v1_DimCalendar = TODAY())
 VAR _ConversionWithOffset = MOD(DateTime + TIME(_GetOffsetDateToday,0,0), 1)
 
 RETURN _ConversionWithOffset
-
